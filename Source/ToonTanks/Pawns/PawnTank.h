@@ -16,7 +16,7 @@ class TOONTANKS_API APawnTank : public APawnBase
 	
 public:
 
-	APawnTank();
+	// APawnTank(); // Uncomment me!!!!
 
 	// // Called every frame
 	// virtual void Tick(float DeltaTime) override;
