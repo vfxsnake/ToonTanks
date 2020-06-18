@@ -24,17 +24,17 @@ public:
 private:
 	// this parameters will be initialized in bluprint.
 	// Capsule comonent for main root and collisions;
-	UPROPERTY(VisibleAnywhere, Category="Components", meta=(AllowPrivateAcces=""))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components", meta = (AllowPrivateAccess = "true"))
 	UCapsuleComponent * CapsuleComp;
 	
 	// components to add on the PawnBase,  everything needs the property to add fucntionality.
-	UPROPERTY(VisibleAnywhere, Category="Components", meta=(AllowPrivateAcces=""))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* BaseMesh;
 	
-	UPROPERTY(VisibleAnywhere, Category="Components", meta=(AllowPrivateAcces=""))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh;
 
-	UPROPERTY(VisibleAnywhere, Category="Components", meta=(AllowPrivateAcces=""))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
 };
 

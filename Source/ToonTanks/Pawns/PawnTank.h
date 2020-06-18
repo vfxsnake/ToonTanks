@@ -6,6 +6,11 @@
 #include "PawnBase.h"
 #include "PawnTank.generated.h"
 
+
+// forward declaration:
+class USpringArmComponent;
+class UCameraComponent;
+
 /**
  * 
  */
@@ -16,19 +21,23 @@ class TOONTANKS_API APawnTank : public APawnBase
 	
 public:
 
-	// APawnTank(); // Uncomment me!!!!
+	APawnTank(); 
 
-	// // Called every frame
-	// virtual void Tick(float DeltaTime) override;
-	// // Called to bind functionality to input
-	// virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	// // Called when the game starts or when spawned
-	// virtual void BeginPlay() override;
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
 private:
 
-
-protected:
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	USpringArmComponent* SpringArm;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UCameraComponent* Camera;
 
 };
