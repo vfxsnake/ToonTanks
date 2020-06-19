@@ -30,14 +30,28 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; // investigate... why class as an input varible?
 	
 private:
-
+	// creating components to attach as inherited and displayed in blue print context
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* SpringArm;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera;
 
+	// varibles to store input muliply:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float MoveSpeed = 600.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float RotateSpeed = 250.f;
+
+	FVector MoveDirection;
+	FQuat RotationDirection;
+
+	void CalculateMoveInput(float Value);
+	void CalculateRotateInput(float Value);
+
+	void Move();
+	void Rotate();
 };
