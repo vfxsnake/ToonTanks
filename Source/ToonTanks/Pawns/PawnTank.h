@@ -30,7 +30,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; // investigate... why class as an input varible?
+	/*	the class is use becasue your going to pass a class instace, but all declaration are out ofscope, the only way to pass
+	this parameter is declaring it inside de parentesis*/
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; 
 	
 private:
 	// creating components to attach as inherited and displayed in blue print context

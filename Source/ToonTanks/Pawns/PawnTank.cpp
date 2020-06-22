@@ -50,6 +50,7 @@ void APawnTank::CalculateMoveInput(float Value)
     // local variable to stor the push force and the set to direction as x component of FVector
 
     float ForwardPush = Value * MoveSpeed * GetWorld()->DeltaTimeSeconds;  // delta time seconds is a float valuen not a function
+                                                                            // is the result of pasedTime/fps
     MoveDirection = FVector( ForwardPush, 0,0);
 }
 
