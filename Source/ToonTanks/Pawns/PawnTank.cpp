@@ -45,7 +45,7 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void APawnTank::CalculateMoveInput(float Value)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Calculating Move multiplied by: %f"), Value);
+    // UE_LOG(LogTemp, Warning, TEXT("Calculating Move multiplied by: %f"), Value);
 
     // local variable to stor the push force and the set to direction as x component of FVector
 
@@ -56,7 +56,7 @@ void APawnTank::CalculateMoveInput(float Value)
 
 void APawnTank::CalculateRotateInput(float Value)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Calculating Move multiplied by: %f"), Value);
+    // UE_LOG(LogTemp, Warning, TEXT("Calculating Move multiplied by: %f"), Value);
     float RotateAmount = Value * RotateSpeed * GetWorld()->DeltaTimeSeconds;
     FRotator Rotation = FRotator(0, RotateAmount, 0);
     RotationDirection = FQuat(Rotation);

@@ -9,6 +9,10 @@
 /**
  * 
  */
+
+// forward declarations:
+class APawnTank;
+
 UCLASS()
 class TOONTANKS_API APawnTurret : public APawnBase
 {
@@ -24,11 +28,23 @@ public:
 	virtual void BeginPlay() override;
 
 private:
-	void CheckFireCondition();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Conbat", meta=(AllowPrivateAcces = "true"))
+	//private variables
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Conbat", meta=(AllowPrivateAccess = "true"))
 	float FireRate = 2.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Conbat", meta=(AllowPrivateAccess = "true"))
+	float FireRange = 500.f; // this is 5 metters. Remember UE mesures are in centimiters
+
+	// handles the timer funciton
 	FTimerHandle FireRateTimerHandle;
+
+	// to store the player pawn tank
+	APawnTank* PlayerPawn = nullptr;
+
+
+	// private Methos
+	void CheckFireCondition();
+	float ReturnDistanceToPlayer();
 
 protected:
 
