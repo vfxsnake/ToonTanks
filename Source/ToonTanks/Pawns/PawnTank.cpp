@@ -20,6 +20,7 @@ APawnTank::APawnTank()
 void APawnTank::BeginPlay()
 {
 	Super::BeginPlay();
+    PlayerControllerRef = Cast<APlayerController>(GetController());
 }
 
 // Called every frame
@@ -29,6 +30,15 @@ void APawnTank::Tick(float DeltaTime)
      // calling Rotate and Move class functions
     Rotate();
     Move();
+
+    if(PlayerControllerRef)
+    {
+        // stores the result in the member variable TraceHitResult; GetHitResultUnderCursos return a point behind the cursosr traced to 3d
+        // 
+        PlayerControllerRef->GetHitResultUnderCursor(ECC_Visibility, true, TraceHitResult);
+        FVector HitLocation = TraceHitResult.ImpactPoint;
+        RotateTurret(HitLocation);
+    }
 }
 
 // Called to bind functionality to input
@@ -39,6 +49,8 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAxis("MoveForward", this, &APawnTank::CalculateMoveInput); // binding similar to Qt button connection just passing the reference
                                                                                         // to the addres of the fucntion.
     PlayerInputComponent->BindAxis("Turn", this, &APawnTank::CalculateRotateInput); // binding to Turn
+
+    PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APawnTank::Fire); // binding to attac on press
 
 }
 
@@ -73,3 +85,9 @@ void APawnTank::Rotate()
 {
     AddActorLocalRotation(RotationDirection, true);
 }
+
+ void APawnTank::HandleDestruction()
+ {
+    Super::HandleDestruction();
+    // Hide Player Todo create new function to do this.
+ }

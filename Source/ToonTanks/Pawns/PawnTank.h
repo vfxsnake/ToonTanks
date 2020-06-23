@@ -23,9 +23,6 @@ public:
 
 	APawnTank(); 
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -51,9 +48,22 @@ private:
 	FVector MoveDirection;
 	FQuat RotationDirection;
 
+	// store the player controller thats  beeng part of the PawnBase.
+	APlayerController* PlayerControllerRef;
+
+	// hit result to stor the position of de curso click 
+	FHitResult TraceHitResult;
+
 	void CalculateMoveInput(float Value);
 	void CalculateRotateInput(float Value);
 
 	void Move();
 	void Rotate();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	virtual void HandleDestruction() override;
+
+
 };

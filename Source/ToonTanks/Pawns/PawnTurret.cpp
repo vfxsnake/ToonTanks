@@ -21,8 +21,12 @@ void APawnTurret::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    // Rotate();
-    // Move();
+    if(!PlayerPawn || ReturnDistanceToPlayer()> FireRange)
+    {
+        return;
+    }
+
+    RotateTurret(PlayerPawn->GetActorLocation());
 }
 
 void APawnTurret::CheckFireCondition()
@@ -38,8 +42,7 @@ void APawnTurret::CheckFireCondition()
     // if Player is in range the Fire
     if (ReturnDistanceToPlayer() <= FireRange)
     {
-        //Fire!!
-        UE_LOG(LogTemp, Warning, TEXT("Fire!!!********"));
+       Fire();
     }
 
     else
@@ -58,4 +61,10 @@ float APawnTurret::ReturnDistanceToPlayer()
 
     float Distance = (PlayerPawn->GetActorLocation() - GetActorLocation()).Size(); //Size returns the magnitud of the vector. see FVector::Size()
     return Distance;
+}
+
+void APawnTurret::HandleDestruction()
+{
+    Super::HandleDestruction(); 
+    Destroy(); // function from Queued thread Pools you can fine it by controll click the function.
 }
