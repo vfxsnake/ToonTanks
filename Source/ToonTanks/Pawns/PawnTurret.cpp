@@ -45,10 +45,10 @@ void APawnTurret::CheckFireCondition()
        Fire();
     }
 
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Player Out of range from %s"), *GetName());
-    }
+    // else
+    // {
+    //     UE_LOG(LogTemp, Warning, TEXT("Player Out of range from %s"), *GetName());
+    // }
 }
 
 float APawnTurret::ReturnDistanceToPlayer()
