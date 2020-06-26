@@ -16,11 +16,13 @@ void ATankGameModeBase::BeginPlay()
 void ATankGameModeBase::ActorDied(AActor* DeadActor)
 {
     //Check what type of actor died. If Turret, tally. if Player-> go to loose condition
+    UE_LOG(LogTemp, Warning, TEXT("this actor has died: %s"), *DeadActor->GetName());
 }
 
 void ATankGameModeBase::HandleGameStart()
 {
     // call blueprint version gemstart(); and initilises the game.
+
 }
 
 void ATankGameModeBase::HandleGameOver(bool PlayerWon)
