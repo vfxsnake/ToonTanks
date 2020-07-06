@@ -30,7 +30,10 @@ AProjectileBase::AProjectileBase()
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if(LaunchSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation());
+	}
 }
 
 void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -42,20 +45,31 @@ void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 		return;
 	}
 
-	if (OtherActor !=NULL && OtherActor != this && OtherActor != MyOwner) //avoid sef collision and owner collision.
+
+	if (OtherActor !=nullptr && OtherActor != this && OtherActor != MyOwner) //avoid sef collision and owner collision.
 	{
-		// using the kismet game statics iclude funcitons aply damage to the other actor
+		// using the kismet game statics include funcitons to apply damage to the other actor
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, DamageType); // investigate this function latter.
-		UE_LOG(LogTemp, Warning, TEXT("Applying damage "));
+		
+		UE_LOG(LogTemp, Warning, TEXT("Applying damage to  %s"), *OtherActor->GetName());
+
+		if(HitParticle)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticle, GetActorLocation(), FRotator::ZeroRotator);
+		}
+
+		if(HitSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+		}
+
+		Destroy(); // this funciton must be from the actor class
 	}
 
-	/* here we are going to implemente fx aned stuff!!
-	.........................................
-	*/
+
 	
-	// calling the destroy funciton
-	UE_LOG(LogTemp, Warning, TEXT("Destroy Actor"));
-	Destroy(); // this funciton must be from the actor class
+
+
 
 }
 

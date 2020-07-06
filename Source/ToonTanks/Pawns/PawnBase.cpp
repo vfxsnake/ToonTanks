@@ -5,6 +5,8 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "../Actors/ProjectileBase.h"
+#include "../Components/HealthComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 APawnBase::APawnBase()
@@ -26,6 +28,8 @@ APawnBase::APawnBase()
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile Spawn Point"));
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
+
+	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("Health Component"));
 }
 
 
@@ -52,4 +56,22 @@ void APawnBase::Fire()
 }
 
 void APawnBase::HandleDestruction()
-{}
+{
+	// functionality to hande the pawn desctriction
+	// handeling particle exists:
+	if(	DeathParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticle, GetActorLocation(), FRotator::ZeroRotator);
+	}
+
+	if(DeathParticle)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+	}
+
+}
+
+void APawnBase::PawnDestroyed()
+{
+	HandleDestruction();
+}

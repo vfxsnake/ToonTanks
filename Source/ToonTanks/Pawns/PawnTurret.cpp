@@ -33,7 +33,7 @@ void APawnTurret::CheckFireCondition()
 {
     // if player == null || is Dead the Bail
     // find ou if player is balid:
-    if(!PlayerPawn)
+    if(!PlayerPawn || !PlayerPawn->GetPlayerAlive())
     {
         return;
     }

@@ -31,6 +31,9 @@ public:
 	this parameter is declaring it inside de parentesis*/
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; 
 	
+	// get value from bAlive
+	bool GetPlayerAlive();
+
 private:
 	// creating components to attach as inherited and displayed in blue print context
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -53,6 +56,9 @@ private:
 
 	// hit result to stor the position of de curso click 
 	FHitResult TraceHitResult;
+
+	// bool to store if the tank is alive
+	bool bAlive = true;
 
 	void CalculateMoveInput(float Value);
 	void CalculateRotateInput(float Value);

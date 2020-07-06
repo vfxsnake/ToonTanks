@@ -46,6 +46,16 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Damage", meta=(AllowPrivateAccess="true"))
 	float Damage = 50.0f;
 
+	// Effects
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
+	UParticleSystem* HitParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
+	USoundBase* HitSound;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
+	USoundBase* LaunchSound;
+
 	// Dynamic delegate Function
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);

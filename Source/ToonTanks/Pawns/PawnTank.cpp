@@ -90,4 +90,15 @@ void APawnTank::Rotate()
  {
     Super::HandleDestruction();
     // Hide Player Todo create new function to do this.
+    // Destroy(); disable because the disable controller is implemented
+    bAlive = false;
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+
+ }
+
+ bool APawnTank::GetPlayerAlive()
+ {
+     return bAlive;
  }
