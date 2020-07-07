@@ -56,6 +56,9 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
 	USoundBase* DeathSound;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
+	TSubclassOf<UCameraShake> DeathShake;
+
 protected:
 	void RotateTurret(FVector LookAtTarget);
 	void Fire();

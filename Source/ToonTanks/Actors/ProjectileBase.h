@@ -49,12 +49,20 @@ private:
 	// Effects
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
 	UParticleSystem* HitParticle;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
+	UParticleSystemComponent* ParticleTrail;
+	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
 	USoundBase* HitSound;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
 	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects", meta=(AllowPrivateAccess="true"))
+	TSubclassOf<UCameraShake> HitShake;
+
 
 	// Dynamic delegate Function
 	UFUNCTION()
